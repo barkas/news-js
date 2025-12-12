@@ -10,13 +10,22 @@ const baseConfig = {
     module: {
         rules: [
             {
+                test: /\.ts$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
             },
         ],
     },
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.ts', '.js'],
+        alias: {
+            '@src': path.resolve(__dirname, 'src/'),
+            '@components': path.resolve(__dirname, 'src/components/'),
+        },
     },
     output: {
         filename: 'index.js',
